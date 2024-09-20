@@ -1,3 +1,9 @@
-This is the official documentation for the project(Shuttle Stalker) done by canopy kermits. This is an (For now) android app to see the real time location and other information
-such as the weather easily. 
+This is the official documentation for the project(Shuttle Stalker) done by canopy kermits. 
+Students of Vit often face several challenges when using shuttle services:
+-Uncertainty of Shuttle Arrival: Students are frequently left waiting at shuttle stops without knowing the exact arrival time, leading to delays and frustration.
+-Inefficient Planning: Without real-time data, students often miss shuttles or arrive too early, disrupting their schedules.
+-Weather Conditions: Sudden weather changes (rain, storms, extreme heat, or cold) can catch students off guard while waiting for shuttles, leading to discomfort or safety risks.
+Without a centralized system to track shuttle locations or integrated weather information, these issues remain unaddressed, causing inefficiencies and lowering overall student satisfaction.
+This is why we propose the development of a Shuttle Stalker (a Shuttle Tracking and Weather Application) specifically designed to enhance mobility and safety for students, faculty, and staff across the campus.
+This innovative application not only offers real-time shuttle tracking but also provides live weather updates, ensuring that everyone can plan their commutes efficiently while staying informed about current and future weather conditions. It’s more than just a utility – it’s a platform designed to make campus life more convenient, safe, and connected.
 
