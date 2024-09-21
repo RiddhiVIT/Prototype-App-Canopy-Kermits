@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class WeatherForecastPage extends StatefulWidget {
+  final double latitude;
+  final double longitude;
+
+  WeatherForecastPage({required this.latitude, required this.longitude});
+
+  @override
+  _WeatherForecastPageState createState() => _WeatherForecastPageState();
+}
+
+class _WeatherForecastPageState extends State<WeatherForecastPage> {
+  String apiKey = 'YOUR_API_KEY';  // Replace with your WeatherAPI key
+  Map<String, dynamic>? weatherData;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchWeather();
+  }
+
+  // Fetch the weather data using WeatherAPI
+  Future<void> fetchWeather() async {
+    final url =
+        'http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=${widget.latitude},${widget.longitude}&days=3';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        setState(() {
+          weatherData = json.decode(response.body);
+        });
+      } else {
+        throw Exception('Failed to load weather data');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Weather Forecast'),
+      ),
+      body: Center(
+        child: weatherData == null
+            ? CircularProgressIndicator()
+            : ListView.builder(
+          itemCount: weatherData!['forecast']['forecastday'].length,
+          itemBuilder: (context, index) {
+            var forecast = weatherData!['forecast']['forecastday'][index];
+            return ListTile(
+              title: Text(forecast['date']),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Condition: ${forecast['day']['condition']['text']}'),
+                  Text('Max Temp: ${forecast['day']['maxtemp_c']}°C'),
+                  Text('Min Temp: ${forecast['day']['mintemp_c']}°C'),
+                ],
+              ),
+              leading: Image.network(
+                'http:${forecast['day']['condition']['icon']}',
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

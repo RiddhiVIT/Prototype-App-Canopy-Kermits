@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'weather_forecast_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,24 +35,37 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> _getUserLocation() async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
     setState(() {
       userLocation = LatLng(position.latitude, position.longitude);
     });
 
     // Send user location to the WebView
     if (userLocation != null) {
-      _controller.evaluateJavascript('updateMap(${userLocation!.latitude}, ${userLocation!.longitude});');
+      _controller.evaluateJavascript(
+          'updateMap(${userLocation!.latitude}, ${userLocation!.longitude});');
     }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WeatherForecastPage(
+          latitude: userLocation!.latitude,
+          longitude: userLocation!.longitude,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Location Tracking App')),
-      body: WebView(
-        initialUrl: Uri.dataFromString(
-          '''
+      body: Stack(
+        children: [
+          WebView(
+            initialUrl: Uri.dataFromString(
+              '''
           <!DOCTYPE html>
           <html>
           <head>
@@ -80,13 +94,73 @@ class _MapScreenState extends State<MapScreen> {
           </body>
           </html>
           ''',
-          mimeType: 'text/html',
-        ).toString(),
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController controller) {
-          _controller = controller;
-        },
+              mimeType: 'text/html',
+            ).toString(),
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController controller) {
+              _controller = controller;
+            },
+          ),
+          SemicircleFAB(),
+        ],
       ),
+    );
+  }
+}
+
+class SemicircleFAB extends StatefulWidget {
+  @override
+  State<SemicircleFAB> createState() => _SemicircleFABState();
+}
+
+class _SemicircleFABState extends State<SemicircleFAB> {
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 0,
+      left: MediaQuery.of(context).size.width / 4 -
+          (MediaQuery.of(context).size.shortestSide / 4),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => WeatherForecastPage(
+              latitude: userLocation!.latitude,
+              longitude: userLocation!.longitude,
+            ),);
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.shortestSide,
+          height: MediaQuery.of(context).size.shortestSide / 4,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.only(
+              bottomLeft:
+                  Radius.circular(MediaQuery.of(context).size.shortestSide),
+              bottomRight:
+                  Radius.circular(MediaQuery.of(context).size.shortestSide),
+            ),
+          ),
+          child: Center(
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 40,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Page')),
+      body: Center(
+          child: Text('Welcome to the Second Page!',
+              style: TextStyle(fontSize: 24))),
     );
   }
 }
