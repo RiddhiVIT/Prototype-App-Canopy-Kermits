@@ -13,7 +13,7 @@ class WeatherForecastPage extends StatefulWidget {
 }
 
 class _WeatherForecastPageState extends State<WeatherForecastPage> {
-  String apiKey = 'YOUR_API_KEY';  // Replace with your WeatherAPI key
+  String apiKey = '69c284512329438da7184210242109'; // Replace with your WeatherAPI key
   Map<String, dynamic>? weatherData;
 
   @override
@@ -52,25 +52,26 @@ class _WeatherForecastPageState extends State<WeatherForecastPage> {
         child: weatherData == null
             ? CircularProgressIndicator()
             : ListView.builder(
-          itemCount: weatherData!['forecast']['forecastday'].length,
-          itemBuilder: (context, index) {
-            var forecast = weatherData!['forecast']['forecastday'][index];
-            return ListTile(
-              title: Text(forecast['date']),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Condition: ${forecast['day']['condition']['text']}'),
-                  Text('Max Temp: ${forecast['day']['maxtemp_c']}°C'),
-                  Text('Min Temp: ${forecast['day']['mintemp_c']}°C'),
-                ],
+                itemCount: weatherData!['forecast']['forecastday'].length,
+                itemBuilder: (context, index) {
+                  var forecast = weatherData!['forecast']['forecastday'][index];
+                  return ListTile(
+                    title: Text(forecast['date']),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Condition: ${forecast['day']['condition']['text']}'),
+                        Text('Max Temp: ${forecast['day']['maxtemp_c']}°C'),
+                        Text('Min Temp: ${forecast['day']['mintemp_c']}°C'),
+                      ],
+                    ),
+                    leading: Image.network(
+                      'http:${forecast['day']['condition']['icon']}',
+                    ),
+                  );
+                },
               ),
-              leading: Image.network(
-                'http:${forecast['day']['condition']['icon']}',
-              ),
-            );
-          },
-        ),
       ),
     );
   }

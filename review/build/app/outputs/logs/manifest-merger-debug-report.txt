@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:5:5-35:19
+INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:5:5-36:19
 MERGED from [:geolocator_android] C:\Users\dipan\review\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:geolocator_android] C:\Users\dipan\review\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\dipan\.gradle\caches\transforms-3\f389662d302390e7f6b0d7b8c9017f76\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:7:5-20
@@ -28,16 +28,14 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\di
 	android:name
 		INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
-MERGED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
+ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
+MERGED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from [:geocoding_android] C:\Users\dipan\review\build\geocoding_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:geolocator_android] C:\Users\dipan\review\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:webview_flutter_android] C:\Users\dipan\review\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\dipan\.gradle\caches\transforms-3\f389662d302390e7f6b0d7b8c9017f76\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\dipan\.gradle\caches\transforms-3\8ae9ca4715d7088b80fc0f06c34f5019\transformed\webkit-1.5.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window:window:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\bd07b76f1628fd82ea521be9a4e5545a\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\b85b9a3cba6252b51c08b5bd140abdca\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
 MERGED from [com.google.android.gms:play-services-base:18.3.0] C:\Users\dipan\.gradle\caches\transforms-3\defb7b57db3fcf962a190550fac0e527\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:16:1-24:12
@@ -58,6 +56,7 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\d
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\dipan\.gradle\caches\transforms-3\020ee5644df8f5f240bc415b37507360\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\dipan\.gradle\caches\transforms-3\c90addfb14740f41ba03e28defe7458b\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.13.1] C:\Users\dipan\.gradle\caches\transforms-3\67225fce31c14b76dd78fa1b0d7bca54\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\dipan\.gradle\caches\transforms-3\d69b49c68d734679a9217edc7f75aa52\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\dipan\.gradle\caches\transforms-3\ba50295717df19618bbe9fe2a090b25d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\62dacced9908b6f7e9cf2914fffbd7dd\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:17:1-22:12
@@ -65,21 +64,20 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\dipan\.gradle\ca
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\dipan\.gradle\caches\transforms-3\75d7505d1181cdfa46b96d471ee765ba\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\dipan\.gradle\caches\transforms-3\edae289cf3e304de922e09c97525d1fe\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\dipan\.gradle\caches\transforms-3\dd591967e27b487d68aec9068e0ac002\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
+		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
+		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-36:12
+		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\dipan\review\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -99,12 +97,8 @@ MERGED from [:geocoding_android] C:\Users\dipan\review\build\geocoding_android\i
 MERGED from [:geocoding_android] C:\Users\dipan\review\build\geocoding_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] C:\Users\dipan\review\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] C:\Users\dipan\review\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:webview_flutter_android] C:\Users\dipan\review\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:webview_flutter_android] C:\Users\dipan\review\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\dipan\.gradle\caches\transforms-3\f389662d302390e7f6b0d7b8c9017f76\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\dipan\.gradle\caches\transforms-3\f389662d302390e7f6b0d7b8c9017f76\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\dipan\.gradle\caches\transforms-3\8ae9ca4715d7088b80fc0f06c34f5019\transformed\webkit-1.5.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\dipan\.gradle\caches\transforms-3\8ae9ca4715d7088b80fc0f06c34f5019\transformed\webkit-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\bd07b76f1628fd82ea521be9a4e5545a\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\bd07b76f1628fd82ea521be9a4e5545a\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\dipan\.gradle\caches\transforms-3\b85b9a3cba6252b51c08b5bd140abdca\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
@@ -145,6 +139,8 @@ MERGED from [androidx.customview:customview:1.0.0] C:\Users\dipan\.gradle\caches
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\dipan\.gradle\caches\transforms-3\c90addfb14740f41ba03e28defe7458b\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\dipan\.gradle\caches\transforms-3\67225fce31c14b76dd78fa1b0d7bca54\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\dipan\.gradle\caches\transforms-3\67225fce31c14b76dd78fa1b0d7bca54\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\dipan\.gradle\caches\transforms-3\d69b49c68d734679a9217edc7f75aa52\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\dipan\.gradle\caches\transforms-3\d69b49c68d734679a9217edc7f75aa52\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\dipan\.gradle\caches\transforms-3\ba50295717df19618bbe9fe2a090b25d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
@@ -159,8 +155,6 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\dipan\.gradle\cache
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\dipan\.gradle\caches\transforms-3\edae289cf3e304de922e09c97525d1fe\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\dipan\.gradle\caches\transforms-3\dd591967e27b487d68aec9068e0ac002\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\dipan\.gradle\caches\transforms-3\dd591967e27b487d68aec9068e0ac002\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\dipan\.gradle\caches\transforms-3\0d1392529e7eee11a9ba1a95ba9b30b9\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml
 INJECTED from C:\Users\dipan\review\android\app\src\debug\AndroidManifest.xml
 	android:targetSdkVersion

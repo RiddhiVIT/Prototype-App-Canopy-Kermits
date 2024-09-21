@@ -9,8 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^2.0.10
+  
+  flutter_map: ^7.0.2
   geolocator: ^9.0.0
+  latlong2: ^0.9.1
 
 
 dev_dependencies:
