@@ -8,7 +8,6 @@ import 'package:latlong2/latlong.dart';
 import 'weather_forecast_page.dart';
 import 'package:http/http.dart' as http;
 
-
 void main() {
   runApp(MyApp());
 }
@@ -116,6 +115,7 @@ class _SemicircleFABState extends State<SemicircleFAB> {
     super.initState();
     fetchWeather();
   }
+
   final String apiKey = '69c284512329438da7184210242109';
   Map<String, dynamic>? weatherData;
 
@@ -162,21 +162,6 @@ class _SemicircleFABState extends State<SemicircleFAB> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("check");
-    debugPrint( weatherData!['forecast']['forecastday']);
-    var forecast = weatherData!['forecast']['forecastday'];
-    var dayCondition = forecast['day']['condition']['text'];
-    var nightCondition = forecast['astro']['moonrise'];
-    String animationPath;
-    if (DateTime.now().hour >= 6 && DateTime.now().hour < 18) {
-      // Daytime
-      animationPath = dayAnimationMap[dayCondition] ??
-          'assets/sunny anime.json'; // Default day animation
-    } else {
-      // Nighttime
-      animationPath = nightAnimationMap[nightCondition] ??
-          'assets/clear night.json'; // Default night animation
-    }
     return Positioned(
       top: 0,
       left: MediaQuery.of(context).size.width / 4 -
@@ -208,11 +193,38 @@ class _SemicircleFABState extends State<SemicircleFAB> {
             children: [
               Positioned(
                 left: 0, // Positioning on the left
-                child: SizedBox(
-                  width: 50, // Adjust width as needed
-                  height: 50, // Adjust height as needed
-                  child: lottie.Lottie.asset(animationPath),
-                ),
+                child: weatherData == null
+                    ? CircularProgressIndicator()
+                    : ListView.builder(
+                        itemCount:
+                            weatherData!['forecast']['forecastday'].length,
+                        itemBuilder: (context, index) {
+                          var forecast =
+                              weatherData!['forecast']['forecastday'][index];
+                          var dayCondition =
+                              forecast['day']['condition']['text'];
+                          var nightCondition = forecast['astro'][
+                              'moonrise']; // Just a placeholder for night condition logic
+
+                          // Determine if it's day or night
+                          String animationPath;
+                          if (DateTime.now().hour >= 6 &&
+                              DateTime.now().hour < 18) {
+                            // Daytime
+                            animationPath = dayAnimationMap[dayCondition] ??
+                                'assets/sunny anime.json'; // Default day animation
+                          } else {
+                            // Nighttime
+                            animationPath = nightAnimationMap[nightCondition] ??
+                                'assets/clear night.json'; // Default night animation
+                          }
+                          return SizedBox(
+                            width: 50, // Adjust width as needed
+                            height: 50, // Adjust height as needed
+                            child: lottie.Lottie.asset(animationPath),
+                          );
+                        },
+                      ),
               ),
               Positioned(
                 left: 60, // Position it to the right of the Lottie animation
