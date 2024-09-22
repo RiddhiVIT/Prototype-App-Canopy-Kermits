@@ -181,62 +181,44 @@ class _SemicircleFABState extends State<SemicircleFAB> {
           width: MediaQuery.of(context).size.shortestSide,
           height: MediaQuery.of(context).size.shortestSide / 4,
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: Colors.greenAccent,
             borderRadius: BorderRadius.only(
               bottomLeft:
-                  Radius.circular(MediaQuery.of(context).size.shortestSide),
+              Radius.circular(MediaQuery.of(context).size.shortestSide),
               bottomRight:
-                  Radius.circular(MediaQuery.of(context).size.shortestSide),
+              Radius.circular(MediaQuery.of(context).size.shortestSide),
             ),
           ),
           child: Stack(
             children: [
-              Positioned(
-                left: 0, // Positioning on the left
+              // Ensure the ListView has a size
+              Positioned.fill(
                 child: weatherData == null
-                    ? CircularProgressIndicator()
+                    ? Center(child: CircularProgressIndicator())
                     : ListView.builder(
-                        itemCount:
-                            weatherData!['forecast']['forecastday'].length,
-                        itemBuilder: (context, index) {
-                          var forecast =
-                              weatherData!['forecast']['forecastday'][index];
-                          var dayCondition =
-                              forecast['day']['condition']['text'];
-                          var nightCondition = forecast['astro'][
-                              'moonrise']; // Just a placeholder for night condition logic
+                  itemCount: weatherData!['forecast']['forecastday'].length,
+                  itemBuilder: (context, index) {
+                    var forecast =
+                    weatherData!['forecast']['forecastday'][index];
+                    var dayCondition =
+                    forecast['day']['condition']['text'];
+                    var nightCondition = forecast['astro']['moonrise'];
 
-                          // Determine if it's day or night
-                          String animationPath;
-                          if (DateTime.now().hour >= 6 &&
-                              DateTime.now().hour < 18) {
-                            // Daytime
-                            animationPath = dayAnimationMap[dayCondition] ??
-                                'assets/sunny anime.json'; // Default day animation
-                          } else {
-                            // Nighttime
-                            animationPath = nightAnimationMap[nightCondition] ??
-                                'assets/clear night.json'; // Default night animation
-                          }
-                          return SizedBox(
-                            width: 50, // Adjust width as needed
-                            height: 50, // Adjust height as needed
-                            child: lottie.Lottie.asset(animationPath),
-                          );
-                        },
-                      ),
-              ),
-              Positioned(
-                left: 60, // Position it to the right of the Lottie animation
-                top: 5, // Adjust for vertical alignment
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.star, // Change to your desired icon
-                      size: 50, // Adjust size as needed
-                      color: Colors.blue, // Change color if needed
-                    ),
-                  ],
+                    String animationPath;
+                    if (DateTime.now().hour >= 6 &&
+                        DateTime.now().hour < 18) {
+                      animationPath = dayAnimationMap[dayCondition] ??
+                          'assets/sunny anime.json';
+                    } else {
+                      animationPath = nightAnimationMap[nightCondition] ??
+                          'assets/clear night.json';
+                    }
+                    return SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: lottie.Lottie.asset(animationPath),
+                    );
+                  },
                 ),
               ),
             ],
@@ -245,4 +227,5 @@ class _SemicircleFABState extends State<SemicircleFAB> {
       ),
     );
   }
+
 }
