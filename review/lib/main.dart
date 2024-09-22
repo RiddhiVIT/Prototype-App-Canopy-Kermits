@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart' as lottie;
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Location Tracking App',
+      title: 'Shuttle Stalking App',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: MapScreen(),
     );
@@ -30,7 +31,12 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   LatLng? userLocation;
+  LatLng? desiredLocation;
   MapController _mapController = MapController();
+  double? routeDistance; // Distance in meters
+  String? estimatedTimeinSeconds;
+
+  get formattedTime => formattedTime; // Time as a string
 
   @override
   void initState() {
@@ -50,54 +56,127 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
+  void _addDesiredLocation(LatLng location) {
+    // Example calculation, replace with your routing logic
+    if (userLocation != null) {
+      setState(() {
+        desiredLocation = location;
+        routeDistance = Geolocator.distanceBetween(userLocation!.latitude,
+            userLocation!.longitude, location.latitude, location.longitude);
+        estimatedTimeinSeconds = (routeDistance! / 1.4).toStringAsFixed(2); // Assuming average speed of 1.4 m/s (about 5 km/h)
+        
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Shuttle Stalking App')),
-      body: Stack(
-        children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter:
-                  userLocation ?? LatLng(0, 0), // Default to (0,0) initially
-              initialZoom: 19.0,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: ['a', 'b', 'c'],
-                maxZoom: 19,
+      body: GestureDetector(
+        onDoubleTapDown: (details) {
+          final position = details.localPosition;
+          final size = MediaQuery.of(context).size;
+          final tapPosition = LatLng(
+            userLocation!.latitude +
+                (position.dy / size.height) * 0.01, // Adjust as needed
+            userLocation!.longitude +
+                (position.dx / size.width) * 0.01, // Adjust as needed
+          );
+          _addDesiredLocation(tapPosition);
+        },
+        child: Stack(
+          children: [
+            FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                initialCenter:
+                userLocation ?? LatLng(0, 0), // Default to (0,0) initially
+                initialZoom: 18.0,
               ),
-              if (userLocation != null)
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                      point: userLocation!,
-                      child: Builder(builder: (context) {
-                        return Icon(
-                          Icons.location_on,
-                          color: Colors.red,
-                          size: 40,
-                        );
-                      }),
-                    ),
-                  ],
+              children: [
+                TileLayer(
+                  urlTemplate:
+                  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  subdomains: ['a', 'b', 'c'],
+                  maxZoom: 19,
                 ),
-            ],
-          ),
-          SemicircleFAB(
-            latitude: userLocation!.latitude,
-            longitude: userLocation!.longitude,
-          ),
-        ],
+                if (userLocation != null)
+                  MarkerLayer(
+                    markers: [
+                      Marker(
+                        point: userLocation!,
+                        child: Builder(builder: (context) {
+                          return Icon(
+                            Icons.location_on,
+                            color: Colors.red,
+                            size: 40,
+                          );
+                        }),
+                      ),
+                      if (desiredLocation != null)
+                        Marker(
+                          point: desiredLocation!,
+                          child: Builder(builder: (context) {
+                            return Column(
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.blue,
+                                  size: 40,
+                                ),
+                                // Tooltip or overlay with distance and time
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  color: Colors.white,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Distance: ${routeDistance?.toStringAsFixed(2)} m',
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        'Estimated Time: ${estimatedTimeinSeconds ?? 'calculating...'} s',
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                        ),
+                    ],
+                  ),
+              ],
+            ),
+            if (desiredLocation != null && routeDistance != null)
+              Positioned(
+                bottom: 20,
+                left: 20,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  color: Colors.black54,
+                  child: Text(
+                    'Distance: ${routeDistance?.toStringAsFixed(2)} m\nEstimated Time: ${estimatedTimeinSeconds} s',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            SemicircleFAB(
+              latitude: userLocation!.latitude,
+              longitude: userLocation!.longitude,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class SemicircleFAB extends StatefulWidget {
+
+
+  class SemicircleFAB extends StatefulWidget {
   @override
   final double latitude;
   final double longitude;
@@ -126,6 +205,7 @@ class _SemicircleFABState extends State<SemicircleFAB> {
     'Rain': 'assets/just rain.json',
     'Patchy rain nearby': 'assets/just rain.json',
     'Moderate or heavy rain with thunder': 'assets/thunder and rain.json',
+    'Moderate rain': 'assets/just rain.json'
     // More mappings after updates
   };
 
@@ -181,12 +261,12 @@ class _SemicircleFABState extends State<SemicircleFAB> {
           width: MediaQuery.of(context).size.shortestSide,
           height: MediaQuery.of(context).size.shortestSide / 4,
           decoration: BoxDecoration(
-            color: Colors.greenAccent,
+            color: Colors.blueGrey,
             borderRadius: BorderRadius.only(
               bottomLeft:
-              Radius.circular(MediaQuery.of(context).size.shortestSide),
+                  Radius.circular(MediaQuery.of(context).size.shortestSide),
               bottomRight:
-              Radius.circular(MediaQuery.of(context).size.shortestSide),
+                  Radius.circular(MediaQuery.of(context).size.shortestSide),
             ),
           ),
           child: Stack(
@@ -196,30 +276,31 @@ class _SemicircleFABState extends State<SemicircleFAB> {
                 child: weatherData == null
                     ? Center(child: CircularProgressIndicator())
                     : ListView.builder(
-                  itemCount: weatherData!['forecast']['forecastday'].length,
-                  itemBuilder: (context, index) {
-                    var forecast =
-                    weatherData!['forecast']['forecastday'][index];
-                    var dayCondition =
-                    forecast['day']['condition']['text'];
-                    var nightCondition = forecast['astro']['moonrise'];
+                        itemCount:
+                            weatherData!['forecast']['forecastday'].length,
+                        itemBuilder: (context, index) {
+                          var forecast =
+                              weatherData!['forecast']['forecastday'][index];
+                          var dayCondition =
+                              forecast['day']['condition']['text'];
+                          var nightCondition = forecast['astro']['moonrise'];
 
-                    String animationPath;
-                    if (DateTime.now().hour >= 6 &&
-                        DateTime.now().hour < 18) {
-                      animationPath = dayAnimationMap[dayCondition] ??
-                          'assets/sunny anime.json';
-                    } else {
-                      animationPath = nightAnimationMap[nightCondition] ??
-                          'assets/clear night.json';
-                    }
-                    return SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: lottie.Lottie.asset(animationPath),
-                    );
-                  },
-                ),
+                          String animationPath;
+                          if (DateTime.now().hour >= 6 &&
+                              DateTime.now().hour < 18) {
+                            animationPath = dayAnimationMap[dayCondition] ??
+                                'assets/sunny anime.json';
+                          } else {
+                            animationPath = nightAnimationMap[nightCondition] ??
+                                'assets/clear night.json';
+                          }
+                          return SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: lottie.Lottie.asset(animationPath),
+                          );
+                        },
+                      ),
               ),
             ],
           ),
@@ -227,5 +308,4 @@ class _SemicircleFABState extends State<SemicircleFAB> {
       ),
     );
   }
-
 }
